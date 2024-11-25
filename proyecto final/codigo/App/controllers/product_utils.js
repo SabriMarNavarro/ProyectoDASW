@@ -1,10 +1,13 @@
 let productContainer = document.getElementById("Cards_products");
 const productsUrl = 'http://localhost:3000/products';
-//let Redireccionamiento = document.getElementById('icono_carrito');
-//let Redireccionamiento2 = document.getElementById('navbarNav');
 let products = [];  // Variable para almacenar todos los productos
+
+//Para controlar la paginación:
 let totalPages = 0;  // Variable para almacenar el total de páginas
 let currentPage = 1;  // Página actual
+
+//Para controlar el producto seleccionado
+let currentProd;
 
 //let {utils} = require("./utils")
 
@@ -28,7 +31,7 @@ function productToHtml(product) {
                                         <h4 class="card-title" style="color: #000; font-size: 1.1rem; font-weight: 500;">${product._title}</h4>
                                         <p class="card-text" style="font-weight: 700; color: rgba(54, 41, 41, 0.699); font-size: 1.1rem;"> $${product._pricePerUnit}</p>
                                         <button type="button" class="btn mb-2" style="border: 2px solid #94694C; border-radius: 19px; width: 145px; color: #94694C; background-color: transparent; font-weight: 650; font-size: 16px;"
-                                        onclick="preloadAddToCartModal('${product._uuid}')">>
+                                        onclick="preloadAddToCartModal('${product._uuid}')">
                                             Add to Cart
                                         </button>
                                     </div>
@@ -63,13 +66,14 @@ async function loadProductsPage(page) {
         console.error('Error al obtener productos del servidor');
     }
 }
+
 // Función para mostrar los productos de la página seleccionada
 function renderPage(page) {
     currentPage = page;  // Actualiza la página actual
     productListToHtml(products);  // Muestra los productos de la página actual
     updatePaginationActive(page);  // Actualiza el estilo de la paginación activa
 }
-// Configura los eventos de la paginación
+
 // Configura los eventos de la paginación
 function setupPagination() {
     const paginationContainer = document.getElementById('pagination');
@@ -141,6 +145,8 @@ function updatePaginationActive(page) {
 
 // Funciones para el carrito
 async function preloadAddToCartModal(uuid) {
+    alert(uuid);
+    currentProd = products.find(prod => prod._uuid = uuid);
     document.getElementById('productIdAddModal').value = uuid;
     document.getElementById('productAmountAddModal').value = 1;
     //Usar la API de Bootstrap para abrir el modal
@@ -148,21 +154,6 @@ async function preloadAddToCartModal(uuid) {
     addToCartModal.show();
 }
 
-// Función para obtener un producto desde el servidor por uuid
-async function fetchProduct(uuid) {
-    try {
-        const response = await fetch(`http://localhost:3000/products/${uuid}`);
-        if (response.ok) {
-            return await response.json(); // Retorna el producto como objeto JSON
-        } else {
-            console.error(`Error al obtener el producto con uuid: ${uuid}`);
-            return null; // Si hay un error, retorna null
-        }
-    } catch (error) {
-        console.error(`Error de servidor al obtener el producto con uuid: ${uuid}`, error);
-        return null; // Retorna null en caso de error de red
-    }
-}
 
 // Función para agregar un producto al carrito
 async function addProductToCart() {
@@ -174,12 +165,12 @@ async function addProductToCart() {
     let cart = readShoppingCart();
 
     // Obtén el producto desde el servidor
-    const product = await fetchProduct(uuid);
+    //const product = await fetchProduct(uuid);
 
-    if (product) {
+    if (currentProd) {
         // Agrega el producto al carrito si la respuesta es válida
         cart.addItem(uuid, amount);
-        cart.addProduct(product);  // Agrega el objeto del producto
+        cart.addProduct(currentProd);  // Agrega el objeto del producto
         writeShoppingCart(cart);  // Guarda el carrito actualizado
     } else {
         console.error('No se pudo agregar el producto al carrito debido a un error al obtenerlo.');
