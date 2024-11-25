@@ -1,7 +1,7 @@
 let productContainer = document.getElementById("Cards_products");
 const productsUrl = 'http://localhost:3000/products';
-let Redireccionamiento = document.getElementById('icono_carrito');
-let Redireccionamiento2 = document.getElementById('navbarNav');
+//let Redireccionamiento = document.getElementById('icono_carrito');
+//let Redireccionamiento2 = document.getElementById('navbarNav');
 let products = [];  // Variable para almacenar todos los productos
 let totalPages = 0;  // Variable para almacenar el total de páginas
 let currentPage = 1;  // Página actual
@@ -25,7 +25,8 @@ function productToHtml(product) {
                                     <div class="card-body d-flex flex-column align-items-center text-center">
                                         <h4 class="card-title" style="color: #000; font-size: 1.1rem; font-weight: 500;">${product._title}</h4>
                                         <p class="card-text" style="font-weight: 700; color: rgba(54, 41, 41, 0.699); font-size: 1.1rem;"> $${product._pricePerUnit}</p>
-                                        <button type="button" class="btn mb-2" style="border: 2px solid #94694C; border-radius: 19px; width: 145px; color: #94694C; background-color: transparent; font-weight: 650; font-size: 16px;">
+                                        <button type="button" class="btn mb-2" style="border: 2px solid #94694C; border-radius: 19px; width: 145px; color: #94694C; background-color: transparent; font-weight: 650; font-size: 16px;"
+                                        onclick="preloadAddToCartModal('${product._uuid}')">>
                                             Add to Cart
                                         </button>
                                     </div>
@@ -135,6 +136,9 @@ function updatePaginationActive(page) {
 async function preloadAddToCartModal(uuid) {
     document.getElementById('productIdAddModal').value = uuid;
     document.getElementById('productAmountAddModal').value = 1;
+    // Usar la API de Bootstrap 5 para abrir el modal
+    let addToCartModal = new bootstrap.Modal(document.getElementById('addToCart'));
+    addToCartModal.show();
 }
 
 // Función para obtener un producto desde el servidor por uuid
@@ -174,10 +178,10 @@ async function addProductToCart() {
     }
 }
 
-// Función de redireccionamiento al carrito
-Redireccionamiento.addEventListener('click', () => {
-    window.location.href = 'shopping_cart.html'; // Redirige al carrito
-});
+// // Función de redireccionamiento al carrito
+// Redireccionamiento.addEventListener('click', () => {
+//     window.location.href = 'shopping_cart.html'; // Redirige al carrito
+// });
 
 // Carga la primera página de productos al iniciar
 loadProductsPage(1);

@@ -540,6 +540,35 @@
             </div>
 
 
+            <!-- Modal de Agregar al Carrito -->
+        <div class="modal fade" id="addToCart" tabindex="-1" aria-labelledby="addToCartLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addToCartLabel">Agregar al Carrito</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="addToCartForm">
+                            <!-- Campo oculto para el UUID del producto -->
+                            <input type="hidden" id="productIdAddModal" name="productId" />
+                            
+                            <!-- Campo de cantidad -->
+                            <div class="mb-3">
+                                <label for="productAmountAddModal" class="form-label">Cantidad</label>
+                                <input type="number" class="form-control" id="productAmountAddModal" name="amount" min="1" value="1" />
+                            </div>
+
+                            <!-- Botón para agregar al carrito -->
+                            <button type="submit" class="btn btn-primary" onclick="addProductToCart()">Añadir al carrito</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
         </footer>
         <!-- Bootstrap JavaScript Libraries -->
         <script
@@ -554,6 +583,10 @@
             crossorigin="anonymous"
         ></script>
 
+
+        <!--BACKEND-->
+        <script src="../controllers/product_utils.js"></script>
+        
 
         <script src="/proyecto final/codigo/App/controllers/product_utils.js"> </script>
     </body>
