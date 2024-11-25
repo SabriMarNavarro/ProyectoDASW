@@ -1,0 +1,250 @@
+
+// Prueba 1.-  Haz una llamada para mostrar tu arreglo de productos vacío, como prueba inicial.
+GET http://localhost:3000/products?page=1
+
+###
+GET http://localhost:3000/mascotas?page=1
+
+
+// Prueba 2.- Haz una llamada a la ruta para crear un producto sin autenticación para ver el error.
+###
+
+POST http://localhost:3000/admin/products HTTP/1.1
+Content-Type: application/json
+
+{
+    "uuid": "12345",
+    "title": "Hierro Garcia",
+    "description": "Metal para vigas",
+    "imageUrl": "https://example.com",
+    "unit": "pieza", 
+    "stock": 10,
+    "pricePerUnit": 4.5,
+    "category": "Metales"
+}
+
+// Prueba 3.- Crea 5 productos. Recuerda ponerles un ID fijo para que las siguientes pruebas sean
+// más fáciles
+
+###
+
+POST http://localhost:3000/admin/products HTTP/1.1
+Content-Type: application/json
+x-auth: {validacion}
+
+{
+    "_uuid": "9",
+    "_title": "Disfraces de halloween para mascotas",
+    "_description": "bolsa para llevar a tu mascota",
+    "_imageUrl": "/proyecto final/codigo/App/Views/Productos/producto8.jpeg",
+    "_unit": "pieza", 
+    "_stock": 7,
+    "_pricePerUnit": 299.50,
+    "_category": "Accesorio",
+    "_type":"Producto"
+}
+
+###
+
+POST http://localhost:3000/admin/mascotas HTTP/1.1
+Content-Type: application/json
+x-auth: {validacion}
+
+{
+    "_uuid": "8",
+    "_title": "Biscocho",
+    "_description": "perro alfa y muy vieja...",
+    "_imageUrl": "/proyecto final/codigo/App/Views/Mascotas/mascota8.jpg",
+    "_status": "Disponible",
+    "_edad": 3,
+    "_type":"Mascota"
+}
+
+###
+
+POST http://localhost:3000/admin/products HTTP/1.1
+Content-Type: application/json
+x-auth: {validacion}
+
+{
+    "_uuid": "2",
+    "_title": "Gatas Sportiva",
+    "_description": "Material exterior microfibra y piel...",
+    "_imageUrl": "https://tatoo.ws/files/public/photos/consejos/2018/Como-escoger-tus-pies-de-gato/tarantula.jpg",
+    "_unit": "pieza", 
+    "_stock": 4,
+    "_pricePerUnit": 4225,
+    "_category": "microfibra",
+    "_type":"Producto"
+}
+
+###
+
+POST http://localhost:3000/admin/products HTTP/1.1
+Content-Type: application/json
+x-auth: {validacion}
+
+{
+    "_uuid": "3",
+    "_title": "Gatas Sportiva",
+    "_description": "Material exterior piel...",
+    "_imageUrl": "https://http2.mlstatic.com/D_NQ_NP_924156-MLM77323845907_062024-O.webp",
+    "_unit": "pieza", 
+    "_stock": 2,
+    "_pricePerUnit": 1975,
+    "_category": "Piel",
+    "_type":"Producto"
+}
+
+###
+
+POST http://localhost:3000/admin/products HTTP/1.1
+Content-Type: application/json
+x-auth: {validacion}
+
+{
+    "_uuid": "4",
+    "_title": "Gatas Black Diamond",
+    "_description": "Material exterior poliester...",
+    "_imageUrl": "https://http2.mlstatic.com/D_NQ_NP_853820-MLM52767581982_122022-O.webp",
+    "_unit": "pieza", 
+    "_stock": 4,
+    "_pricePerUnit": 1891,
+    "_category": "poliester",
+    "_type":"Producto"
+}
+
+###
+
+POST http://localhost:3000/admin/products HTTP/1.1
+Content-Type: application/json
+x-auth: {validacion}
+
+{
+    "_uuid": "5",
+    "_title": "Gatas Sportiva",
+    "_description": "Material exterior tela y caucho...",
+    "_imageUrl": "https://http2.mlstatic.com/D_NQ_NP_912353-MLM69678665468_052023-O.webp",
+    "_unit": "pieza", 
+    "_stock": 7,
+    "_pricePerUnit": 3200,
+    "_category": "caucho",
+    "_type":"Producto"
+}
+
+###
+
+POST http://localhost:3000/admin/products HTTP/1.1
+Content-Type: application/json
+x-auth: {validacion}
+
+{
+    "_uuid": "6",
+    "_title": "Gatas Ocun",
+    "_description": "Material Caucho y Microfibra...",
+    "_imageUrl": "https://http2.mlstatic.com/D_NQ_NP_810457-MLM41006060498_032020-O.webp",
+    "_unit": "pieza", 
+    "_stock": 7,
+    "_pricePerUnit": 3390,
+    "_category": "caucho",
+    "_type":"Producto"
+}
+
+###
+
+POST http://localhost:3000/admin/products HTTP/1.1
+Content-Type: application/json
+x-auth: {validacion}
+
+{
+    "_uuid": "7",
+    "_title": "Gatas Methods",
+    "_description": "Material suela Black label...",
+    "_imageUrl": "https://http2.mlstatic.com/D_NQ_NP_759192-MLM41577099965_042020-O.webp",
+    "_unit": "pieza", 
+    "_stock": 7,
+    "_pricePerUnit": 3200,
+    "_category": "Black label",
+    "_type":"Producto"
+}
+
+###
+
+POST http://localhost:3000/admin/products HTTP/1.1
+Content-Type: application/json
+x-auth: {validacion}
+
+{
+    "_uuid": "8",
+    "_title": "Gatas So ill",
+    "_description": "Material exterior Microsuede vegano...",
+    "_imageUrl": "https://http2.mlstatic.com/D_NQ_NP_956203-MLM76945835577_062024-O.webp",
+    "_unit": "pieza", 
+    "_stock": 7,
+    "_pricePerUnit": 3900,
+    "_category": "Black label",
+    "_type":"Producto"
+}
+
+// Prueba 4.- Elimina un producto.
+###
+
+DELETE http://localhost:3000/admin/products/1 HTTP/1.1
+x-auth: {validacion}
+
+// Prueba 5.- Consulta un producto por ID.
+###
+
+GET http://localhost:3000/products/2 HTTP/1.1
+
+###
+
+GET http://localhost:3000/mascotas/1 HTTP/1.1
+
+
+# Prueba 6.- Consulta un producto con el parámetro de filtrado (por ejemplo, categoría).
+###
+GET http://localhost:3000/products?category=Metales HTTP/1.1
+
+
+// Prueba 7.- Editar cualquier producto para cambiar su nombre.
+// se cambio el producto dos, paso del Titilo de Hierro a Acero Inoxidable
+###
+
+PUT http://localhost:3000/admin/products/2 HTTP/1.1 
+Content-Type: application/json
+x-auth: {validacion}
+
+{
+    "_title": "Acero Inoxidable"
+}
+
+
+// Prueba 8.- Realiza una llamada de nuevo para ver que tú arreglo de productos va correctamente hasta ahora.
+###
+
+GET http://localhost:3000/products
+
+// Prueba 9.- Añade tres productos a tu carrito con la cantidad que quieras. Recuerda que la ruta debe regresar
+// el carrito como lo tienes en ese momento.
+###
+
+POST http://localhost:3000/products/cart HTTP/1.1
+Content-Type: application/json
+
+[
+    { "_uuid": 2, "_amount": 2 },
+    { "_uuid": 3, "_amount": 1 },
+    { "_uuid": 4, "_amount": 4 }
+]
+
+// Prueba 10.- Intenta agregar un producto cuyo ID no exista para verificar error:
+###
+POST http://localhost:3000/products/cart HTTP/1.1
+Content-Type: application/json
+
+[
+    { "_uuid": 22, "_amount": 2 },
+    { "_uuid": 33, "_amount": 1 },
+    { "_uuid": 44, "_amount": 4 }
+]
