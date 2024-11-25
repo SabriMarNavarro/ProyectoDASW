@@ -6,6 +6,8 @@ let products = [];  // Variable para almacenar todos los productos
 let totalPages = 0;  // Variable para almacenar el total de páginas
 let currentPage = 1;  // Página actual
 
+//let {utils} = require("./utils")
+
 function productToHtml(product) {
     return `
         <div class="col-lg-3 col-md-4 col-sm-6 mb-4" style="position: relative;">
@@ -136,7 +138,7 @@ function updatePaginationActive(page) {
 async function preloadAddToCartModal(uuid) {
     document.getElementById('productIdAddModal').value = uuid;
     document.getElementById('productAmountAddModal').value = 1;
-    // Usar la API de Bootstrap 5 para abrir el modal
+    //Usar la API de Bootstrap para abrir el modal
     let addToCartModal = new bootstrap.Modal(document.getElementById('addToCart'));
     addToCartModal.show();
 }
@@ -162,6 +164,7 @@ async function addProductToCart() {
     let uuid = document.getElementById('productIdAddModal').value;
     let amount = parseInt(document.getElementById('productAmountAddModal').value);
 
+    
     // Recupera el carrito desde sessionStorage
     let cart = readShoppingCart();
 
