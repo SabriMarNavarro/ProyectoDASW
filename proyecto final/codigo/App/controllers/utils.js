@@ -1,4 +1,4 @@
-
+// const {ShoppingCart} = require('./shopping_cart');
 
 function initShoppingCart(){
     if( sessionStorage.getItem('shoppingCart') == null){

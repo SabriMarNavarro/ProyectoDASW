@@ -38,7 +38,12 @@ function productToHtml(product) {
 }
 
 function productListToHtml(productList) {
-    productContainer.innerHTML = `<div class="row mt-5 d-flex justify-content-center">\n` + productList.map(productToHtml).join("\n") + `\n</div>`;
+    if (productContainer) {
+        productContainer.innerHTML = `<div class="row mt-5 d-flex justify-content-center">\n` + productList.map(productToHtml).join("\n") + `\n</div>`;
+    } else {
+        alert("no product container")
+    }
+    
 }
 
 // Función para cargar los productos desde el servidor
