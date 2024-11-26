@@ -145,9 +145,7 @@ function updatePaginationActive(page) {
 
 // Funciones para el carrito
 async function preloadAddToCartModal(uuid) {
-    console.log(uuid)
     currentProd = products.find(prod => prod._uuid == uuid);
-    console.log(currentProd)
     document.getElementById('productIdAddModal').value = uuid;
     document.getElementById('productAmountAddModal').value = 1;
     //Usar la API de Bootstrap para abrir el modal

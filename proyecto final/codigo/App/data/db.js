@@ -109,6 +109,23 @@ let FavoritosSchema = mongoose.Schema ({
     }
 });
 
+let UserSchema = mongoose.Schema ({
+    _email: {
+        type: _email,
+        required: true
+    },
+    _password: {
+        _type: {
+            type: String,
+            required: true
+        },
+    _rol: {
+            type: String,
+            required: true
+        }
+    }
+});
+
 
 //Creamos modelo
 let Productos = mongoose.model('productos', ProductosSchema);

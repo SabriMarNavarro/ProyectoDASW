@@ -253,7 +253,7 @@
                 <div class="col-2"></div>
                 <div class="col-5" style="text-align: center;">
                     <h2 style="font-size: 2.5rem; color: white;">Adopta amor, no lo <br>compres.</h2>
-                    <button type="button" class="btn btn-light px-5 mt-2">Empezar el trámite</button>
+                    <button type="button" class="btn btn-light px-5 mt-2" onclick="openMascotas()">Empezar el trámite</button>
                 </div>
                 <!-- Contenedor para la imagen -->
                 <div class="col-5" style="justify-content: center; height: 300px;">
@@ -275,11 +275,11 @@
                             </div>
                             <div class="col-md-6 h-100 w-50" >
                                 <div class="card-body">
-                                    <h4 class="animal-cardName">Berenice</h4>
-                                    <p class="animal-cardAge m-0">5 años</p>
+                                    <h4 class="animal-cardName">Mari Carmen</h4>
+                                    <p class="animal-cardAge m-0">3 años</p>
                                     <p class="animal-cardText m-0">Se busca un amante de los gatos para cuidar a una gatita muy cariñosa y activa...</p>
                                     <p class="animal-cardStatus"><small class="text-muted">Estatus: disponible</small></p>
-                                    <button class="btn btn-light">Adoptar  ></button>
+                                    <button class="btn btn-light" onclick="openMascotas()">Ver más  ></button>
                                 </div>
                             </div>
                         </div>
@@ -301,7 +301,7 @@
                                     <p class="animal-cardAge m-0">3 años</p>
                                     <p class="animal-cardText m-0">Lola es una gatita muy traviesa, por cuestiones económicas no puedo quedármela pero busco alguien...</p>
                                     <p class="animal-cardStatus"><small class="text-muted">Estatus: disponible</small></p>
-                                    <button class="btn btn-light">Adoptar  ></button>
+                                    <button class="btn btn-light" onclick="openMascotas()">Ver más  ></button>
                                 </div>
                             </div>
                         </div>
@@ -337,7 +337,8 @@
                         <div class="card-body d-flex flex-column align-items-center text-center">
                             <h4 class="card-title" style="color: #000; font-size: 1.1rem; font-weight: 500;">Instinct Original: with chicken</h4>
                             <p class="card-text" style="font-weight: 700; color: rgba(54, 41, 41, 0.699); font-size: 1.1rem;">$132.93</p>
-                            <button type="button" class="btn mb-2" style="border: 2px solid #94694C; border-radius: 19px; width: 145px; color: #94694C; background-color: transparent; font-weight: 650; font-size: 16px;">
+                            <button type="button" class="btn mb-2" style="border: 2px solid #94694C; border-radius: 19px; width: 145px; color: #94694C; background-color: transparent; font-weight: 650; font-size: 16px;"
+                            onclick="preloadAddToCartModal(2)">
                                 Add to cart
                             </button>
                         </div>
@@ -350,7 +351,8 @@
                         <div class="card-body d-flex flex-column align-items-center text-center">
                             <h5 class="card-title" style="color: #000; font-size: 1.1rem; font-weight: 500;">Instinct Original: For cats</h5>
                             <p class="card-text" style="font-weight: 700; color: rgba(0, 0, 0, 0.699); font-size: 1.1rem;">$132.93</p>
-                            <button type="button" class="btn mb-2" style="border: 2px solid #94694C; border-radius: 19px; width: 145px; color: #94694C; background-color: transparent; font-weight: 650; font-size: 16px;">
+                            <button type="button" class="btn mb-2" style="border: 2px solid #94694C; border-radius: 19px; width: 145px; color: #94694C; background-color: transparent; font-weight: 650; font-size: 16px;"
+                            onclick="preloadAddToCartModal(3)">
                                 Add to cart
                             </button>
                         </div>
@@ -363,7 +365,8 @@
                         <div class="card-body d-flex flex-column align-items-center text-center">
                             <h5 class="card-title" style="color: #000; font-size: 1.1rem; font-weight: 500;">Instinct Original: RawBoost</h5>
                             <p class="card-text" style="font-weight: 700; color: rgba(0, 0, 0, 0.699); font-size: 1.1rem;">$132.93</p>
-                            <button type="button" class="btn mb-2" style="border: 2px solid #94694C; border-radius: 19px; width: 145px; color: #94694C; background-color: transparent; font-weight: 650; font-size: 16px;">
+                            <button type="button" class="btn mb-2" style="border: 2px solid #94694C; border-radius: 19px; width: 145px; color: #94694C; background-color: transparent; font-weight: 650; font-size: 16px;"
+                            onclick="preloadAddToCartModal(4)">
                                 Add to cart
                             </button>
                         </div>
@@ -376,7 +379,8 @@
                         <div class="card-body d-flex flex-column align-items-center text-center">
                             <h5 class="card-title" style="color: #000; font-size: 1.1rem; font-weight: 500;">Instinct Original: Be Natural</h5>
                             <p class="card-text" style="font-weight: 700; color: rgba(0, 0, 0, 0.699); font-size: 1.1rem;">$132.93</p>
-                            <button type="button" class="btn mb-2" style="border: 2px solid #94694C; border-radius: 19px; width: 145px; color: #94694C; background-color: transparent; font-weight: 650; font-size: 16px;">
+                            <button type="button" class="btn mb-2" style="border: 2px solid #94694C; border-radius: 19px; width: 145px; color: #94694C; background-color: transparent; font-weight: 650; font-size: 16px;"
+                            onclick="preloadAddToCartModal(5)">
                                 Add to cart
                             </button>
                         </div>
@@ -387,7 +391,7 @@
             </div>
             <br>
             <div class="d-flex justify-content-center align-items-center">
-                <button style=" border-radius: 19px; width: 145px; font-weight: 650; font-size: 16px;" class="btn btn-danger rounded-pill">Ver más</button>
+                <button style=" border-radius: 19px; width: 145px; font-weight: 650; font-size: 16px;" class="btn btn-danger rounded-pill" onclick="openProducts()">Ver más</button>
             </div>
             
             <br>
@@ -500,6 +504,43 @@
             </div>
         </div>
 
+        <!-- Modal -->
+        <div class="modal fade" id="adoptionModal" tabindex="-1" aria-labelledby="adoptionModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="adoptionModalLabel">Adopción</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="adoptionForm">
+                            <div class="mb-3">
+                                <label for="userName" class="form-label">Nombre</label>
+                                <input type="text" class="form-control" id="userName" placeholder="Tu nombre" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="userMessage" class="form-label">Mensaje</label>
+                                <textarea class="form-control" id="userMessage" rows="3" placeholder="¿Por qué quieres adoptar?" required></textarea>
+                            </div>
+                            <!-- Campo oculto para el UUID del producto -->
+                            <input type="hidden" id="productIdAddModal" name="productId" />
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" id="agreePolicies" required>
+                                <label class="form-check-label" for="agreePolicies">
+                                He leído y estoy de acuerdo con las políticas de adopción.
+                            </label>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary" id="submitAdoption">Aceptar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
         
 
         <!-- Bootstrap JavaScript Libraries -->
@@ -514,5 +555,9 @@
             integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
             crossorigin="anonymous"
         ></script>
+
+        <script src="/proyecto final/codigo/App/controllers/utils.js"></script>
+        <script src="/proyecto final/codigo/App/controllers/shopping_cart.js"> </script>
+        <script src="/proyecto final/codigo/App/controllers/home_utils.js"></script>
     </body>
 </html>
