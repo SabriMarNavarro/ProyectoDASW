@@ -414,6 +414,43 @@
 
             </div>
 
+
+            <!-- Modal -->
+            <div class="modal fade" id="adoptionModal" tabindex="-1" aria-labelledby="adoptionModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="adoptionModalLabel">Adopción</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="adoptionForm">
+                                <div class="mb-3">
+                                    <label for="userName" class="form-label">Nombre</label>
+                                    <input type="text" class="form-control" id="userName" placeholder="Tu nombre" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="userMessage" class="form-label">Mensaje</label>
+                                    <textarea class="form-control" id="userMessage" rows="3" placeholder="¿Por qué quieres adoptar?" required></textarea>
+                                </div>
+                                <!-- Campo oculto para el UUID del producto -->
+                                <input type="hidden" id="productIdAddModal" name="productId" />
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" type="checkbox" id="agreePolicies" required>
+                                    <label class="form-check-label" for="agreePolicies">
+                                    He leído y estoy de acuerdo con las políticas de adopción.
+                                </label>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-primary" id="submitAdoption">Aceptar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             
 
             

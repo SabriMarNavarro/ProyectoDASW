@@ -25,13 +25,22 @@ function productToHtml(product) {
                                     <div class="card-body d-flex flex-column align-items-center text-center">
                                         <h4 class="card-title" style="color: #000; font-size: 1.1rem; font-weight: 500;">${product._title}</h4>
                                         <p class="card-text" style="font-weight: 700; color: rgba(54, 41, 41, 0.699); font-size: 1.1rem;">Edad: ${product._edad} años </p>
-                                        <button type="button" class="btn mb-2" style="border: 2px solid #94694C; border-radius: 19px; width: 145px; color: #94694C; background-color: transparent; font-weight: 650; font-size: 16px;">
+                                        <button type="button" class="btn mb-2" style="border: 2px solid #94694C; border-radius: 19px; width: 145px; color: #94694C; background-color: transparent; font-weight: 650; font-size: 16px;"
+                                        onclick="preloadModal(${product._uuid})">
                                             Adoptar
                                         </button>
                                     </div>
                                 </div>
         </div>
     `;
+}
+
+async function preloadModal(uuid) {
+    currentProd = products.find(prod => prod._uuid == uuid);
+    document.getElementById('productIdAddModal').value = uuid;
+    //Usar la API de Bootstrap para abrir el modal
+    let adoptionModal = new bootstrap.Modal(document.getElementById('adoptionModal'));
+    adoptionModal.show();
 }
 
 function productListToHtml(productList) {

@@ -167,7 +167,7 @@ async function addProductToCart() {
 
     if (currentProd) {
         // Agrega el producto al carrito si la respuesta es válida
-        cart.addItem(currentProd._uuid, amount);
+        cart.addItem(uuid, amount);
         cart.addProduct(currentProd);  // Agrega el objeto del producto
         writeShoppingCart(cart);  // Guarda el carrito actualizado
     } else {

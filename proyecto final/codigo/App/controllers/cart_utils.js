@@ -6,6 +6,9 @@ let productContainer3 = document.getElementById('resumen_compra');
 function productToHtml(product, amount) {
     return `
     <div class="media border d-flex align-items-center" data-uuid="${product.productUuid}">
+        <div class="media-right">
+            <img class="rounded" src="${product._imageUrl}" alt="Product Image" width="150px" height="150px">
+        </div>
         <div class="media-body m-4">
             <div class="d-flex justify-content-between align-items-center mb-2">
                 <h5>${product._title}</h5>
@@ -45,10 +48,6 @@ function productToHtml(product, amount) {
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="media-right">
-            <img class="rounded" src="${product._imageUrl}" alt="Product Image" width="150px" height="150px">
         </div>
     </div>
     `;
@@ -183,16 +182,17 @@ function updatePurchaseSummary() {
     if (cartProducts.length > 0) {
         resumenCompraContainer.innerHTML = `
             <div style="margin-top: 15px; display: flex; flex-direction: column; align-items: flex-end;" class="justify-content-end">
-                <h5 class="card-title">Total de compra</h5>
+                <h4 class="card-title mb-3">Resumen de compra</h4>
+                <div class="mb-4 card-text text-end">
+              
                 ${cart.proxies.map(proxy => {
-                    let product = cart.products.find(item => item._uuid === proxy.productUuid);
-                    return `<p class="card-text">${product._title}: ${proxy.amount} x $${product._pricePerUnit.toFixed(2)}</p>`;
-                }).join('')}
+                        let product = cart.products.find(item => item._uuid === proxy.productUuid);
+                        return `<p class="card-text m-0">${product._title}: ${proxy.amount} x $${product._pricePerUnit.toFixed(2)}</p>`;
+                    }).join('')}
+                </div>
                 <p class="card-text">Costo de envío: $500.00</p>
                 <div class="dropdown-divider"></div>
-                <p class="card-text">Total a pagar: $${(total + 500).toFixed(2)}</p>
-                <a class="btn btn-outline-success w-100" href="#">Pagar</a>
-                <a class="btn btn-outline-danger w-100 mt-2" href="#">Cancelar</a>
+                <h5 class="card-text">Total a pagar: $${(total + 500).toFixed(2)}</h5>
 
             </div>
         `;
