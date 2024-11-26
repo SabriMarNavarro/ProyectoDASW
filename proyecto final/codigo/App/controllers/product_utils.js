@@ -49,6 +49,25 @@ function productListToHtml(productList) {
     
 }
 
+//  manejador de eventos al corazón para que cambie el color cuando se hace clic
+function setupHeartIcons() {
+    const heartIcons = document.querySelectorAll('.heart-icon');
+    heartIcons.forEach(icon => {
+        icon.addEventListener('click', function () {
+            const heart = icon.querySelector('i');
+            if (heart.classList.contains('fa-solid')) {
+                // Si ya está relleno, lo cambiamos al corazón vacío
+                heart.classList.remove('fa-solid');
+                heart.style.color = ''; // Restaura el color original
+            } else {
+                // Si está vacío, lo rellenamos y cambiamos a rojo
+                heart.classList.add('fa-solid');
+                heart.style.color = 'red';
+            }
+        });
+    });
+}
+
 // Función para cargar los productos desde el servidor
 async function loadProductsPage(page) {
     const response = await fetch(`${productsUrl}?page=${page}`);
@@ -72,6 +91,7 @@ function renderPage(page) {
     currentPage = page;  // Actualiza la página actual
     productListToHtml(products);  // Muestra los productos de la página actual
     updatePaginationActive(page);  // Actualiza el estilo de la paginación activa
+    setupHeartIcons(); // Configura los íconos del corazón
 }
 
 // Configura los eventos de la paginación
