@@ -6,49 +6,58 @@ let productContainer3 = document.getElementById('resumen_compra');
 function productToHtml(product, amount) {
     return `
     <div class="media border d-flex align-items-center" data-uuid="${product.productUuid}">
-        <div class="media-right">
-            <img class="rounded" src="${product._imageUrl}" alt="Product Image" width="150px" height="150px">
-        </div>
-        <div class="media-body m-4">
-            <div class="d-flex justify-content-between align-items-center mb-2">
-                <h5>${product._title}</h5>
-                <button class="btn btn-danger remove-btn" value="${product.productUuid}" >
-                    <i class="fas fa-trash"></i>
-                </button>
+        <div class="row p-4">
+            <div class="media-right col-4">
+                <img class="rounded" src="${product._imageUrl}" alt="Product Image" width="150px" height="150px">
             </div>
-
-            <div class="form-group">
-                <div class="input-group mb-2">
-                    <div class="input-group-prepend">
-                        <a name="cantidad" id="cantidad" class="btn btn-secondary" href="#numProd1" role="button">Cantidad</a>
+            <div class="media-body col-8 p-4">
+                <div class="row">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h5>${product._title}</h5>
                     </div>
-                    <input type="number" class="form-control" name="numProd1" id="numProd1" value="${amount}" 
-                        , this.value)" disabled>
-                    <div class="input-group-append">
-                        <a href="#" class="btn btn-info edit-btn" data-uuid="${product.productUuid}">
-                            <i class="fas fa-pencil-alt"></i>
-                        </a>
-                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <!--<a name="cantidad" id="cantidad" class="btn btn-secondary" href="#numProd1" role="button">
+                                        <i class="fas fa-minus"></i>
+                                    </a>-->
+                                </div>
+                                <input type="number" class="form-control" name="numProd1" id="numProd1" value="${amount}" 
+                                    , this.value)" disabled>
+                                <div class="input-group-append">
+                                    <a href="#" class="btn btn-white edit-btn" data-uuid="${product.productUuid}">
+                                        <i class="fas fa-pen"></i>
+                                    </a>
+                                </div>
 
-                    <div class="input-group-append">
-                        <a href="#" class="btn btn-success confirm-btn" style="display: none;">Confirmar</a>
-                        <a href="#" class="btn btn-danger cancel-btn" style="display: none;">Cancelar</a>
+                                <div class="input-group-append">
+                                    <a href="#" class="btn btn-success confirm-btn" style="display: none;"><i class="fas fa-check"></i></a>
+                                    <a href="#" class="btn btn-danger cancel-btn" style="display: none;"><i class="fas fa-times"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class=" mt-2">$${product._pricePerUnit}</div>
+                                <div class="input-group-append">
+                                    <button class="btn btn-white remove-btn" value="${product.productUuid}" >
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <div class="form-group">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <a name="cantidad" id="cantidad" class="btn btn-secondary" href="" role="button">Precio</a>
-                    </div>
-                    <div class="form-control">${product._pricePerUnit}</div>
-                    <div class="input-group-append">
-                        <a name="cantidadlbl" id="cantidadlbl" class="btn btn-secondary" href="" role="button">$ m.n.</a>
-                    </div>
-                </div>
-            </div>
+        
+        
         </div>
+        
     </div>
     `;
 }

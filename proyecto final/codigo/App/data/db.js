@@ -111,7 +111,7 @@ let FavoritosSchema = mongoose.Schema ({
 
 let UserSchema = mongoose.Schema ({
     _email: {
-        type: _email,
+        type: String,
         required: true
     },
     _password: {
