@@ -145,8 +145,9 @@ function updatePaginationActive(page) {
 
 // Funciones para el carrito
 async function preloadAddToCartModal(uuid) {
-    alert(uuid);
-    currentProd = products.find(prod => prod._uuid = uuid);
+    console.log(uuid)
+    currentProd = products.find(prod => prod._uuid == uuid);
+    console.log(currentProd)
     document.getElementById('productIdAddModal').value = uuid;
     document.getElementById('productAmountAddModal').value = 1;
     //Usar la API de Bootstrap para abrir el modal
@@ -164,12 +165,9 @@ async function addProductToCart() {
     // Recupera el carrito desde sessionStorage
     let cart = readShoppingCart();
 
-    // Obtén el producto desde el servidor
-    //const product = await fetchProduct(uuid);
-
     if (currentProd) {
         // Agrega el producto al carrito si la respuesta es válida
-        cart.addItem(uuid, amount);
+        cart.addItem(currentProd._uuid, amount);
         cart.addProduct(currentProd);  // Agrega el objeto del producto
         writeShoppingCart(cart);  // Guarda el carrito actualizado
     } else {

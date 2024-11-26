@@ -273,82 +273,14 @@
                     <h3 style="color: rgba(0, 0, 0, 0.900); font-family: Poppins; display: inline;"> Tu carrito:</h3>
                     <h5 style=" text-decoration: underline; margin-left: 63%; display: inline; color: rgba(0, 0, 0, 0.514); font-family: Poppins; "> Politicas de compras</h5>
                     
-                    <div>                        
+                    <div>        
+                        <div id="resumen_cart">
+                            <!--Aquí van los productos -->
+                        </div>                
 
-                        <div class="row" style=" display: flex; align-items: center;   height: 200px; border-bottom: 3px solid #E6E6E6; ">
-                            <div class="col-lg-3 col-md-3 col-sm-6">
-                                <img class="card-img-top p-2" src="/proyecto final/codigo/App/Views/Productos/imagen_producto_1.webp" style="width: 75%; height: 75%; margin-left: 20%;" alt="productos"/>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-6">
-                                <p class="card-title" style="color: rgba(0, 0, 0, 0.750); font-size: 25px; font-weight: 500;">Instinct Original: Dog food</p>
-                            </div>
-                            <div class="col-lg-2 col-md-2 col-sm-6" style="display: flex; justify-content: space-between;">
-                                <div class="boton" onclick="disminuir()" style="line-height: 23px; font-weight: bold; font-size: 45px;">-</div>
-                                <div class="numero" id="contador" style="color: rgba(0, 0, 0, 0.750); font-family: Poppins; font-size: 25px;" >1</div>
-                                <div class="boton" onclick="aumentar()" style="line-height: 30px; font-weight: bold; font-size: 39px;">+</div>
-                            </div>
-                            <div class="col-lg-3 colmd-3 col-sm-6">
-                                <div class="row align-items-center">
-                                    <div class="col-lg-7">
-                                        <p class="m-2" style="color: rgba(0, 0, 0, 0.750); font-family: Poppins; font-size: 26px; font-weight: 500;">$132.93</p>
-                                    </div>
-                                    <div class="col-lg-5">
-                                        <div class="boton" onclick="aumentar()" style="line-height: 22px; font-size: 39px;">x</div>    
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="row" style=" display: flex; align-items: center;   height: 200px; border-bottom: 3px solid #E6E6E6; ">
-                            <div class="col-lg-3 col-md-3 col-sm-6">
-                                <img class="card-img-top p-2" src="/proyecto final/codigo/App/Views/Productos/imagen_producto_2.webp" style="width: 75%; height: 75%; margin-left: 20%;" alt="productos"/>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-6">
-                                <p class="card-title" style="color: rgba(0, 0, 0, 0.750); font-size: 25px; font-weight: 500;">Instinct Original: Cat food</p>
-                            </div>
-                            <div class="col-lg-2 col-md-2 col-sm-6" style="display: flex; justify-content: space-between;">
-                                <div class="boton" onclick="disminuir()" style="line-height: 23px; font-weight: bold; font-size: 45px;">-</div>
-                                <div class="numero" id="contador" style="color: rgba(0, 0, 0, 0.750); font-family: Poppins; font-size: 25px;" >1</div>
-                                <div class="boton" onclick="aumentar()" style="line-height: 30px; font-weight: bold; font-size: 39px;">+</div>
-                            </div>
-                            <div class="col-lg-3 colmd-3 col-sm-6">
-                                <div class="row align-items-center">
-                                    <div class="col-lg-7">
-                                        <p class="m-2" style="color: rgba(0, 0, 0, 0.750); font-family: Poppins; font-size: 26px; font-weight: 500;">$132.93</p>
-                                    </div>
-                                    <div class="col-lg-5">
-                                        <div class="boton" onclick="aumentar()" style="line-height: 22px; font-size: 39px;">x</div>    
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row" style=" display: flex; align-items: center;   height: 200px; border-bottom: 3px solid #E6E6E6; ">
-                            <div class="col-lg-3 col-md-3 col-sm-6">
-                                <img class="card-img-top p-2" src="/proyecto final/codigo/App/Views/Productos/imagen_producto_3.webp" style="width: 75%; height: 75%; margin-left: 20%;" alt="productos"/>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-6">
-                                <p class="card-title" style="color: rgba(0, 0, 0, 0.750); font-size: 25px; font-weight: 500;">Instinct Original: Puppys</p>
-                            </div>
-                            <div class="col-lg-2 col-md-2 col-sm-6" style="display: flex; justify-content: space-between;">
-                                <div class="boton" onclick="disminuir()" style="line-height: 23px; font-weight: bold; font-size: 45px;">-</div>
-                                <div class="numero" id="contador" style="color: rgba(0, 0, 0, 0.750); font-family: Poppins; font-size: 25px;" >1</div>
-                                <div class="boton" onclick="aumentar()" style="line-height: 30px; font-weight: bold; font-size: 39px;">+</div>
-                            </div>
-                            <div class="col-lg-3 colmd-3 col-sm-6">
-                                <div class="row align-items-center">
-                                    <div class="col-lg-7">
-                                        <p class="m-2" style="color: rgba(0, 0, 0, 0.750); font-family: Poppins; font-size: 26px; font-weight: 500;">$132.93</p>
-                                    </div>
-                                    <div class="col-lg-5">
-                                        <div class="boton" onclick="aumentar()" style="line-height: 22px; font-size: 39px;">x</div>    
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div style="margin-top: 15px;">
+                        <div class="row" id="resumen_compra">
+                            <!--Aquí va el total de la compra-->
+                            <!-- <div style="margin-top: 15px;">
                                 <h5 style="margin-left: 75%; display: inline; color: rgba(0, 0, 0, 0.514); font-family: Poppins; display: inline;"> Subtotal: </h5>
                                 <h5 style=" margin-left: 3%; display: inline; color: rgba(0, 0, 0, 0.514); font-family: Poppins; display: inline; "> $396 </h5>
                                 <div style="margin-top: .5%;">
@@ -357,9 +289,9 @@
                                 </div>
                                 <div style="margin-top: 1.3%;">
                                     <h4 style="margin-top: 1.2%; margin-left: 75%; color: rgba(0, 0, 0, 0.900); font-family: Poppins; display: inline;"> Total:</h3>
-                                    <h4 style="margin-left: 50px; color: rgba(0, 0, 0, 0.900); font-family: Poppins; display: inline;"> $456</h3>    
-                                </div>
-                            </div>
+                                    <h4 style="color: rgba(0, 0, 0, 0.900); font-family: Poppins; display: inline;"> $456</h3>    
+                                </div> 
+                            </div>-->
 
                         </div>
                     </div>
@@ -472,5 +404,11 @@
             integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
             crossorigin="anonymous"
         ></script>
+
+        <!--BACKEND-->
+        <script src="/proyecto final/codigo/App/controllers/shopping_cart.js"> </script>
+        <script src="/proyecto final/codigo/App/controllers/utils.js"> </script>
+        <script src="/proyecto final/codigo/App/controllers/cart_utils.js"> </script>
+    
     </body>
 </html>

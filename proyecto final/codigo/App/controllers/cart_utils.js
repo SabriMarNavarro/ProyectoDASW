@@ -15,7 +15,7 @@ function productToHtml(product, amount) {
             </div>
 
             <div class="form-group">
-                <div class="input-group">
+                <div class="input-group mb-2">
                     <div class="input-group-prepend">
                         <a name="cantidad" id="cantidad" class="btn btn-secondary" href="#numProd1" role="button">Cantidad</a>
                     </div>
@@ -182,16 +182,19 @@ function updatePurchaseSummary() {
     const resumenCompraContainer = document.getElementById('resumen_compra');
     if (cartProducts.length > 0) {
         resumenCompraContainer.innerHTML = `
-            <h5 class="card-title">Total de compra</h5>
-            ${cart.proxies.map(proxy => {
-                let product = cart.products.find(item => item._uuid === proxy.productUuid);
-                return `<p class="card-text">${product._title}: ${proxy.amount} x $${product._pricePerUnit.toFixed(2)}</p>`;
-            }).join('')}
-            <p class="card-text">Costo de envío: $500.00</p>
-            <div class="dropdown-divider"></div>
-            <p class="card-text">Total a pagar: $${(total + 500).toFixed(2)}</p>
-            <a class="btn btn-outline-success w-100" href="#">Pagar</a>
-            <a class="btn btn-outline-danger w-100 mt-2" href="#">Cancelar</a>
+            <div style="margin-top: 15px; display: flex; flex-direction: column; align-items: flex-end;" class="justify-content-end">
+                <h5 class="card-title">Total de compra</h5>
+                ${cart.proxies.map(proxy => {
+                    let product = cart.products.find(item => item._uuid === proxy.productUuid);
+                    return `<p class="card-text">${product._title}: ${proxy.amount} x $${product._pricePerUnit.toFixed(2)}</p>`;
+                }).join('')}
+                <p class="card-text">Costo de envío: $500.00</p>
+                <div class="dropdown-divider"></div>
+                <p class="card-text">Total a pagar: $${(total + 500).toFixed(2)}</p>
+                <a class="btn btn-outline-success w-100" href="#">Pagar</a>
+                <a class="btn btn-outline-danger w-100 mt-2" href="#">Cancelar</a>
+
+            </div>
         `;
     } else {
         resumenCompraContainer.innerHTML = '<p>No hay recargos por el momento</p>';
