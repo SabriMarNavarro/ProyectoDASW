@@ -54,37 +54,26 @@ function setupHeartIcons() {
     });
 }
 
-document.getElementById('filterDog').addEventListener('change', applyFilters);
-document.getElementById('filterCat').addEventListener('change', applyFilters);
-document.getElementById('filterBird').addEventListener('change', applyFilters);
-document.getElementById('filterFish').addEventListener('change', applyFilters);
-document.getElementById('filterSmall').addEventListener('change', applyFilters);
-document.getElementById('filterMed').addEventListener('change', applyFilters);
-document.getElementById('filterBig').addEventListener('change', applyFilters);
-document.getElementById('filterLessThanYear').addEventListener('change', applyFilters);
-document.getElementById('filter1To3Years').addEventListener('change', applyFilters);
-document.getElementById('filter3To5Years').addEventListener('change', applyFilters);
-document.getElementById('filterMoreAge').addEventListener('change', applyFilters);
+// Añade eventListeners dinámicamente a los filtros
+const filters = [
+    'filterDog', 'filterCat', 'filterBird', 'filterFish',
+    'filterSmall', 'filterMed', 'filterBig',
+    'filterLessThanYear', 'filter1To3Years', 'filter3To5Years', 'filterMoreAge'
+];
+
+filters.forEach(filterId => {
+    document.getElementById(filterId).addEventListener('change', applyFilters);
+});
 
 function applyFilters() {
     // Obtener los valores de los filtros seleccionados
-    const filterDog = document.getElementById('filterDog').checked;
-    const filterCat = document.getElementById('filterCat').checked;
-    const filterBird = document.getElementById('filterBird').checked;
-    const filterFish = document.getElementById('filterFish').checked;
-    const filterSmall = document.getElementById('filterSmall').checked;
-    const filterMed = document.getElementById('filterMed').checked;
-    const filterBig = document.getElementById('filterBig').checked;
-    const filterLessThanYear = document.getElementById('filterLessThanYear').checked;
-    const filter1To3Years = document.getElementById('filter1To3Years').checked;
-    const filter3To5Years = document.getElementById('filter3To5Years').checked;
-    const filterMoreAge = document.getElementById('filterMoreAge').checked;
+    const filterStates = filters.reduce((acc, filterId) => {
+        acc[filterId] = document.getElementById(filterId).checked;
+        return acc;
+    }, {});
 
     // Verificar si al menos un filtro está seleccionado
-    const anyFilterSelected = 
-        filterDog || filterCat || filterBird || filterFish ||
-        filterSmall || filterMed || filterBig ||
-        filterLessThanYear || filter1To3Years || filter3To5Years || filterMoreAge;
+    const anyFilterSelected = Object.values(filterStates).some(isChecked => isChecked);
 
     // Si no hay filtros seleccionados, cargar todos los productos
     if (!anyFilterSelected) {
@@ -95,31 +84,30 @@ function applyFilters() {
     // Filtrar los productos con base en los filtros seleccionados
     const filteredProducts = products.filter(product => {
         const matchesMascotas = 
-            (!filterDog || product._especie === 'perro') &&
-            (!filterCat || product._especie === 'gato') &&
-            (!filterBird || product._especie === 'ave') &&
-            (!filterFish || product._especie === 'pez');
-        
+            (filterStates.filterDog && product._especie === 'perro') ||
+            (filterStates.filterCat && product._especie === 'gato') ||
+            (filterStates.filterBird && product._especie === 'ave') ||
+            (filterStates.filterFish && product._especie === 'pez');
+
         const matchesSize = 
-            (!filterSmall || product._tamano === 'pequeno') &&
-            (!filterMed || product._tamano === 'mediano') &&
-            (!filterBig || product._tamano === 'grande');
+            (filterStates.filterSmall && product._tamano === 'pequeno') ||
+            (filterStates.filterMed && product._tamano === 'mediano') ||
+            (filterStates.filterBig && product._tamano === 'grande');
     
         const matchesAge = 
-            (!filterLessThanYear || product._edad < 1) &&
-            (!filter1To3Years || (product._edad >= 1 && product._edad <= 3)) &&
-            (!filter3To5Years || (product._edad >= 3 && product._edad <= 5)) &&
-            (!filterMoreAge || product._edad > 5);
+            (filterStates.filterLessThanYear && product._edad < 1) ||
+            (filterStates.filter1To3Years && (product._edad >= 1 && product._edad <= 3)) ||
+            (filterStates.filter3To5Years && (product._edad >= 3 && product._edad <= 5)) ||
+            (filterStates.filterMoreAge && product._edad > 5);
     
-        // Solo se devuelve el producto si todos los filtros que están seleccionados son verdaderos
-        return matchesMascotas && matchesSize && matchesAge;
+        // El producto pasa si cumple al menos un filtro activo de cada categoría
+        return (!filterStates.filterDog && !filterStates.filterCat && !filterStates.filterBird && !filterStates.filterFish || matchesMascotas) &&
+               (!filterStates.filterSmall && !filterStates.filterMed && !filterStates.filterBig || matchesSize) &&
+               (!filterStates.filterLessThanYear && !filterStates.filter1To3Years && !filterStates.filter3To5Years && !filterStates.filterMoreAge || matchesAge);
     });
-
-    console.log(filteredProducts);  // Verifica si hay productos después del filtro
-
     if (filteredProducts.length === 0) {
         // Si no hay productos que coincidan, mostrar mensaje
-        productContainer.innerHTML = '<p style=" margin-top: 30%; text-align: center ; font-size: 18px; color: #333;">No hay mascotas con esas características</p>';
+        productContainer.innerHTML = '<p style="margin-top: 20%; text-align: center; font-size: 18px; color: #333;">No hay mascotas con esas características</p>';
     } else {
         // Mostrar los productos filtrados
         productListToHtml(filteredProducts);
