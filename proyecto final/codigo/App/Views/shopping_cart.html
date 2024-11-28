@@ -151,7 +151,7 @@
                                                 <div class="mb-4">
                                                     <a href="#" class="text-secondary" style="font-size: 0.9rem;" data-bs-target="#recoverModal" data-bs-toggle="modal" data-bs-dismiss="modal">¿Olvidaste tu contraseña?</a>
                                                 </div>
-                                                <button type="submit" class="btn btn-dark w-100 py-2 rounded-0">INICIAR SESIÓN</button>
+                                                <button type="submit" class="btn btn-dark w-100 py-2 rounded-0" onclick="login()">INICIAR SESIÓN</button>
                                             </form>
                                             <div class="text-center mt-3">
                                                 <a href="#" class="text-secondary" style="font-size: 0.9rem;" data-bs-dismiss="modal">Volver a la tienda</a>
@@ -189,7 +189,7 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                            <button type="button" class="btn btn-primary" id="registerButton">Crear Cuenta</button>
+                                            <button type="button" class="btn btn-primary" id="registerButton" onclick="crearCuenta()">Crear Cuenta</button>
                                         </div>
                                     </div>
                                 </div>
@@ -248,6 +248,9 @@
                                 </a>
                             </li>
                             
+                            <li class="nav-item">
+                                <a class="nav-link" href="shop_animals.html" onclick="logout()">Salir</a>
+                            </li>
                         </ul>
 
                         <!--Búsqueda--> 
