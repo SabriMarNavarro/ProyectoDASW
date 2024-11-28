@@ -78,7 +78,25 @@ async function crearCuenta() {
 
 
 
+async function login() {
+    const email = document.getElementById('email').value;
+    const Password = document.getElementById('password').value;
 
+    // Verificar si el email ya existe en el arreglo local `users`
+    const existingUser = users.find(user => user._email === email);
+    const validPassword = users.find(user => user._password === Password);
+
+    if (existingUser && validPassword) {
+        if(existingUser._rol === "ADMIN") {
+            localStorage.setItem('user._uuid', 'ADMIN');
+        } else {
+            localStorage.setItem('user._uuid', 'CLIENTE');
+        }
+    } else {
+        showAlert("Usuario o contraseña incorrectos!", "danger");
+    }
+    //alert( localStorage.getItem('user._uuid') );
+}
 
 
 
