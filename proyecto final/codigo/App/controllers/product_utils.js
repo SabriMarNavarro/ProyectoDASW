@@ -319,6 +319,32 @@ async function addProductToDataBase() {
 }
 
 
+
+function hideButton() {
+    var buttonDiv = document.getElementById("botonagregarmascotas");
+    buttonDiv.style.display = "none";  // Ocultar el div y todo su contenido
+}
+function showButton() {
+    var buttonDiv = document.getElementById("botonagregarmascotas");
+    buttonDiv.style.display = "block";  // Ocultar el div y todo su contenido
+}
+
+// Llamada a la función para ocultar el botón
+//hideButton();
+
+
+function checkUserRole() {
+    const isAdmin = localStorage.getItem('rol');  // Aquí pones tu lógica para verificar si el usuario es administrador
+
+    if (isAdmin == 'ADMIN') {
+        showButton();
+    } else {
+        hideButton();
+    }
+}
+
+// Llamada a la función para verificar el rol del usuario y posiblemente ocultar el botón
+checkUserRole();
 // // Función de redireccionamiento al carrito
 // Redireccionamiento.addEventListener('click', () => {
 //     window.location.href = 'shopping_cart.html'; // Redirige al carrito

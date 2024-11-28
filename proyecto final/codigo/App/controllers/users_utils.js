@@ -94,20 +94,22 @@ async function login() {
             localStorage.setItem('rol', existingUser._rol);
             localStorage.setItem('email', existingUser._email);
         }
-        toggleButtonVisibilityLogin()
-        toggleButtonVisibilitySalir()
+        // toggleButtonVisibilityLogin()
+        // toggleButtonVisibilitySalir()
     } else {
         showAlert("Usuario o contraseña incorrectos!", "danger");
     }
-    alert( localStorage.getItem('rol') );
+    // alert( localStorage.getItem('rol') );
 }
+
+
 
 
 async function logout() {
     delete localStorage.rol;
     delete localStorage.email;
-    toggleButtonVisibilityLogin()
-    toggleButtonVisibilitySalir()
+    // toggleButtonVisibilityLogin()
+    // toggleButtonVisibilitySalir()
 }
 
 
