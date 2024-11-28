@@ -270,5 +270,10 @@ Redireccionamiento.addEventListener('click', () => {
     window.location.href = 'shopping_cart.html'; // Redirige al carrito
 });
 
+function addPetToDataBase() {
+    alert("La solicitud ha sido enviada, en unos dias se publicara");
+    
+}
+
 // Carga la primera página de productos al iniciar
 loadProductsPage(1);
