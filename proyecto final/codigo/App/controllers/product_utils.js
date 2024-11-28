@@ -258,7 +258,7 @@ async function addProductToCart() {
 
 
 async function addProductToDataBase() {
-    let productName  = document.getElementById('productName').value.value;
+    let productName  = document.getElementById('productName').value;
     let uuid = document.getElementById('uuid').value;
     let unitType = document.getElementById('unitType').value;
     let price = document.getElementById('price').value;
@@ -269,6 +269,7 @@ async function addProductToDataBase() {
 
     const existingProduct = products.find(prod => prod._uuid === uuid);
     if (existingProduct) {
+        alert("si entra aqui");
         showAlert("Uuid ya existente", "danger");
         return;
     }
@@ -345,10 +346,49 @@ function checkUserRole() {
 
 // Llamada a la función para verificar el rol del usuario y posiblemente ocultar el botón
 checkUserRole();
-// // Función de redireccionamiento al carrito
-// Redireccionamiento.addEventListener('click', () => {
-//     window.location.href = 'shopping_cart.html'; // Redirige al carrito
-// });
 
-// Carga la primera página de productos al iniciar
+
+function showAlert(message, type) {
+    const alert = document.createElement('div');
+    alert.classList.add('alert', type);
+    alert.innerText = message;
+
+    // Insertar el mensaje de alerta en el cuerpo de la página
+    document.body.prepend(alert); // Muestra el alert en la parte superior de la página
+
+    // Remover el mensaje después de 5 segundos
+    setTimeout(() => {
+        alert.remove();
+    }, 5000); // El mensaje desaparece después de 5 segundos
+}
+
+// Añadir el estilo para el mensaje tipo alert (puedes colocarlo en tu archivo de CSS)
+document.head.insertAdjacentHTML('beforeend', `
+    <style>
+        .alert {
+            position: fixed;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 15px 25px;
+            border-radius: 5px;
+            font-size: 16px;
+            color: white;
+            z-index: 9999;
+            width: 80%;
+            max-width: 600px;
+            text-align: center;
+        }
+    
+        .alert.success {
+            background-color: #28a745; /* Verde para éxito */
+        }
+    
+        .alert.danger {
+            background-color: #dc3545; /* Rojo para error */
+        }
+    </style>
+`);
+
+
 loadProductsPage(1);
