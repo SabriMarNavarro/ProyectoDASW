@@ -271,9 +271,52 @@ Redireccionamiento.addEventListener('click', () => {
 });
 
 function addPetToDataBase() {
-    alert("La solicitud ha sido enviada, en unos dias se publicara");
+    showAlert("La solicitud ha sido enviada, en unos dias se publicara",'success');
     
 }
+
+function showAlert(message, type) {
+    const alert = document.createElement('div');
+    alert.classList.add('alert', type);
+    alert.innerText = message;
+
+    // Insertar el mensaje de alerta en el cuerpo de la página
+    document.body.prepend(alert); // Muestra el alert en la parte superior de la página
+
+    // Remover el mensaje después de 5 segundos
+    setTimeout(() => {
+        alert.remove();
+    }, 5000); // El mensaje desaparece después de 5 segundos
+}
+
+// Añadir el estilo para el mensaje tipo alert (puedes colocarlo en tu archivo de CSS)
+document.head.insertAdjacentHTML('beforeend', `
+    <style>
+        .alert {
+            position: fixed;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 15px 25px;
+            border-radius: 5px;
+            font-size: 16px;
+            color: white;
+            z-index: 9999;
+            width: 80%;
+            max-width: 600px;
+            text-align: center;
+        }
+    
+        .alert.success {
+            background-color: #28a745; /* Verde para éxito */
+        }
+    
+        .alert.danger {
+            background-color: #dc3545; /* Rojo para error */
+        }
+    </style>
+`);
+
 
 // Carga la primera página de productos al iniciar
 loadProductsPage(1);
