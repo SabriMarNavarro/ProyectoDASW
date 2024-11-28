@@ -265,6 +265,72 @@ async function addProductToCart() {
     }
 }
 
+document.getElementById('submitAdoption').addEventListener('click', function () {
+    // Obtener el estado del checkbox de aceptación de políticas
+    const agreePolicies = document.getElementById('agreePolicies').checked;
+
+    if (!agreePolicies) {
+        // Mostrar alerta o mensaje de error si no está marcado
+        alert('Por favor, acepta las políticas de adopción antes de continuar.');
+        return; // Salir de la función para evitar acciones adicionales
+    }
+
+    // Si está marcado, continuar con el envío del formulario
+    const adoptionForm = document.getElementById('adoptionForm');
+    if (adoptionForm.checkValidity()) {
+        showAlert('Tu solicitud esta en proceso, los siguientes pasos seran enviados a tu correo', 'success');
+        const adoptionModal = bootstrap.Modal.getInstance(document.getElementById('adoptionModal'));
+        adoptionModal.hide();
+
+    } else {
+        // Mostrar los mensajes de validación estándar si faltan datos
+        adoptionForm.reportValidity();
+    }
+
+    // Función para mostrar el mensaje tipo alert
+    function showAlert(message, type) {
+        const alert = document.createElement('div');
+        alert.classList.add('alert', type);
+        alert.innerText = message;
+
+        // Insertar el mensaje de alerta en el cuerpo de la página
+        document.body.prepend(alert); // Muestra el alert en la parte superior de la página
+
+        // Remover el mensaje después de 5 segundos
+        setTimeout(() => {
+            alert.remove();
+        }, 5000); // El mensaje desaparece después de 5 segundos
+    }
+
+    // Añadir el estilo para el mensaje tipo alert (puedes colocarlo en tu archivo de CSS)
+    document.head.insertAdjacentHTML('beforeend', `
+    <style>
+        .alert {
+            position: fixed;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 15px 25px;
+            border-radius: 5px;
+            font-size: 16px;
+            color: white;
+            z-index: 9999;
+            width: 80%;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        .alert.success {
+            background-color: #28a745; /* Verde para éxito */
+        }
+
+        .alert.danger {
+            background-color: #dc3545; /* Rojo para error */
+        }
+    </style>
+    `);
+});
+
 // Función de redireccionamiento al carrito
 Redireccionamiento.addEventListener('click', () => {
     window.location.href = 'shopping_cart.html'; // Redirige al carrito
