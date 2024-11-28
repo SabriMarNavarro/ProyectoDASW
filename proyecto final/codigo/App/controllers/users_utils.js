@@ -94,6 +94,8 @@ async function login() {
             localStorage.setItem('rol', existingUser._rol);
             localStorage.setItem('email', existingUser._email);
         }
+        toggleButtonVisibilityLogin()
+        toggleButtonVisibilitySalir()
     } else {
         showAlert("Usuario o contraseña incorrectos!", "danger");
     }
@@ -104,8 +106,24 @@ async function login() {
 async function logout() {
     delete localStorage.rol;
     delete localStorage.email;
+    toggleButtonVisibilityLogin()
+    toggleButtonVisibilitySalir()
 }
 
+
+function toggleButtonVisibilityLogin() {
+    // Obtener el botónvar 
+    button = document.getElementById("entrar");
+        // Alternar la clase 'd-none' para ocultar o mostrar el botón    
+        button.classList.toggle("d-none");
+}
+
+function toggleButtonVisibilitySalir() {
+    // Obtener el botónvar 
+    button = document.getElementById("salir");
+        // Alternar la clase 'd-none' para ocultar o mostrar el botón    
+        button.classList.toggle("d-none");
+}
 
 // Función para convertir un producto en HTML
 function logueadoActive() {
