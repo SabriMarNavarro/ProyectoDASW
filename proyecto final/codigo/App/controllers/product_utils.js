@@ -1,5 +1,6 @@
 let productContainer = document.getElementById("Cards_products");
 const productsUrl = 'http://localhost:3000/products';
+const adminProductsUrl = 'http://localhost:3000/admin/products';
 let products = [];  // Variable para almacenar todos los productos
 
 //Para controlar la paginación:
@@ -253,16 +254,68 @@ async function addProductToCart() {
     } else {
         console.error('No se pudo agregar el producto al carrito debido a un error al obtenerlo.');
     }
-
-    let addToCartModal = bootstrap.Modal.getInstance(document.getElementById('addToCart'));
-    if (addToCartModal) {
-        addToCartModal.hide();
-    }
 }
 
 
-function addProductToDataBase() {
-    alert('subiendo...')
+async function addProductToDataBase() {
+    let productName  = document.getElementById('productName').value.value;
+    let uuid = document.getElementById('uuid').value;
+    let unitType = document.getElementById('unitType').value;
+    let price = document.getElementById('price').value;
+    let description = document.getElementById('description').value;
+    let stock = document.getElementById('stock').value;
+    let imageUrl = document.getElementById('imageUrl').value;
+    let category = document.getElementById('category').value;
+
+    const existingProduct = products.find(prod => prod._uuid === uuid);
+    if (existingProduct) {
+        showAlert("Uuid ya existente", "danger");
+        return;
+    }
+    // Crear el objeto user para enviar al servidor
+    const newProd = {
+        _uuid: uuid,
+        _title: productName,
+        _description: description,
+        _imageUrl: imageUrl,
+        _unit: unitType,
+        _stock: stock,
+        _pricePerUnit: price,
+        _category: category,
+        _type: 'Producto'
+    };
+
+    try {
+        // Enviar los datos al servidor usando POST
+        
+        const response = await fetch(adminProductsUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-auth': 'validacion'
+            },
+            body: JSON.stringify(newProd), 
+        });
+
+        // Manejar respuesta del servidor
+        if (response.ok) { // `response.ok` es true si el estado HTTP está en el rango 200-299
+            const data = await response.json();
+            console.log(data);
+            showAlert("Producto añadido exitosamente", "success");
+            await loadProductsPage(currentPage);
+        } else if (response.status === 400) {
+            const error = await response.json();
+            showAlert(`Error: ${error.message}`, "danger");
+        } else {
+            showAlert("Error desconocido al crear usuario", "danger");
+        }
+        
+    } catch (error) {
+        console.error("Error al conectar con el servidor:", error);
+        showAlert("No se pudo conectar al servidor", "danger");
+    }
+
+
 }
 
 

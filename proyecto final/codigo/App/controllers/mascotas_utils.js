@@ -5,6 +5,7 @@ let Redireccionamiento2 = document.getElementById('navbarNav');
 let products = [];  // Variable para almacenar todos los productos
 let totalPages = 0;  // Variable para almacenar el total de páginas
 let currentPage = 1;  // Página actual
+let adminPetsUrl = 'http://localhost:3000/admin/mascotas'; 
 
 function productToHtml(product) {
     return `
@@ -336,9 +337,63 @@ Redireccionamiento.addEventListener('click', () => {
     window.location.href = 'shopping_cart.html'; // Redirige al carrito
 });
 
-function addPetToDataBase() {
-    showAlert("La solicitud ha sido enviada, en unos dias se publicara",'success');
-    
+async function addPetToDataBase() {
+    let petUUID  = document.getElementById('petUUID').value;
+    let petTitle = document.getElementById('petTitle').value;
+    let petDescription = document.getElementById('petDescription').value;
+    let petImageURL = document.getElementById('petImageURL').value;
+    let petAge = document.getElementById('petAge').value;
+    let petSpecies = document.getElementById('petSpecies').value;
+    let petSize = document.getElementById('petSize').value;
+
+    const existingPet = products.find(pet => pet._uuid === petUUID);
+    if (existingPet) {
+        showAlert("Uuid ya existente", "danger");
+        return;
+    }
+    // Crear el objeto user para enviar al servidor
+    const newPet = {
+        _uuid: petUUID,
+        _title: petTitle,
+        _description: petDescription,
+        _imageUrl: petImageURL,
+        _especie: petSpecies,
+        _edad: petAge,
+        tamano: petSize,
+        _tamano: petSize,
+        _type: 'Mascota',
+    };
+
+    try {
+        // Enviar los datos al servidor usando POST
+        const response = await fetch(adminPetsUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-auth': 'validacion'
+            },
+            body: JSON.stringify(newPet), 
+        });
+
+        // Manejar respuesta del servidor
+        if (response.ok) { // `response.ok` es true si el estado HTTP está en el rango 200-299
+            const data = await response.json();
+            console.log(data);
+            showAlert("Mascota añadido exitosamente", "success");
+            await loadProductsPage(currentPage);
+        } else if (response.status === 400) {
+            const error = await response.json();
+            showAlert(`Error: ${error.message}`, "danger");
+        } else {
+            showAlert("Error desconocido al crear usuario", "danger");
+        }
+        
+    } catch (error) {
+        console.error("Error al conectar con el servidor:", error);
+        showAlert("No se pudo conectar al servidor", "danger");
+    }
+
+
 }
 
 function showAlert(message, type) {

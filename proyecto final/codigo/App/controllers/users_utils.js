@@ -42,7 +42,7 @@ async function crearCuenta() {
         _uuid: Math.random()*Date.now(),
         _email: registerEmail,
         _password: registerPassword,
-        _rol: "CLIENT" // Rol predeterminado
+        _rol: "CLIENTE" // Rol predeterminado
     };
 
     try {
