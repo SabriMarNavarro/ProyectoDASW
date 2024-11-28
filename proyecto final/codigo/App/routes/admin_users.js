@@ -25,6 +25,7 @@ router.post('/', async (req, res) => {
 
     try {
         // Usa await para esperar que la promesa de crear el usero se resuelva
+        console.log(user)
         await createUser(user);
         return res.status(201).json({ message: `User creado: ${user._email}` });
     } catch (error) {

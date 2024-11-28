@@ -1,7 +1,6 @@
 let users = [];
 let count = 3;
-const usersUrl = 'http://localhost:3000/admin/user';
--ñññ
+const usersUrl = 'http://localhost:3000/admin/users';
 // Función para cargar los usuarios desde el servidor
 async function loadUsers(page) {
     const response = await fetch(`http://localhost:3000/users`);
@@ -51,7 +50,8 @@ async function crearCuenta() {
         const response = await fetch(usersUrl, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'x-auth': 'validacion'
             },
             body: JSON.stringify(newUser), 
         });
