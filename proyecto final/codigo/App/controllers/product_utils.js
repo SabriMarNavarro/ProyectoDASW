@@ -253,6 +253,11 @@ async function addProductToCart() {
     } else {
         console.error('No se pudo agregar el producto al carrito debido a un error al obtenerlo.');
     }
+
+    let addToCartModal = bootstrap.Modal.getInstance(document.getElementById('addToCart'));
+    if (addToCartModal) {
+        addToCartModal.hide();
+    }
 }
 
 // // Función de redireccionamiento al carrito

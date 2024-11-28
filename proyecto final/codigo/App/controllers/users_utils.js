@@ -95,7 +95,7 @@ async function login() {
     } else {
         showAlert("Usuario o contraseña incorrectos!", "danger");
     }
-    //alert( localStorage.getItem('user._uuid') );
+    alert( localStorage.getItem('user._uuid') );
 }
 
 
