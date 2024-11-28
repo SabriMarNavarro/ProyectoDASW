@@ -1,6 +1,6 @@
 // Obtener referencias a los elementos del DOM
 let productContainer2 = document.getElementById('resumen_cart');
-let productContainer3 = document.getElementById('resumen_compra');
+
 
 // Función para convertir un producto en HTML
 function productToHtml(product, amount) {
@@ -188,11 +188,12 @@ function updatePurchaseSummary() {
     let total = cart.calculateTotal();
     
     const resumenCompraContainer = document.getElementById('resumen_compra');
+
     if (cartProducts.length > 0) {
         resumenCompraContainer.innerHTML = `
-            <div style="margin-top: 15px; display: flex; flex-direction: column; align-items: flex-end;" class="justify-content-end">
+            <div style="margin-top: -5%; display: flex; flex-direction: column;" >
                 <h4 class="card-title mb-3">Resumen de compra</h4>
-                <div class="mb-4 card-text text-end">
+                <div class="mb-4 card-text ">
               
                 ${cart.proxies.map(proxy => {
                         let product = cart.products.find(item => item._uuid === proxy.productUuid);
@@ -217,13 +218,25 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Mostrar el mensaje adecuado solo si el estado es 'success'
     if (status === 'success') {
-        showAlert('¡El pago fue procesado exitosamente!', 'success');
-    }
+        showAlert('¡El pago fue procesado exitosamente! Tu comprobante se envía por correo.', 'success');
 
-    // Actualizar el resumen del carrito y la compra
-    updateCartSummary();
-    updatePurchaseSummary();
+        // Eliminar todos los productos del carrito
+        let cart = readShoppingCart();
+
+        // Si hay productos en el carrito, eliminarlos
+        if (cart && cart.proxies.length > 0) {
+            cart.proxies.forEach(proxy => {
+                // Eliminar el producto del carrito
+                removeProductFromCart(proxy.productUuid);
+            });
+
+            // Actualizar el resumen del carrito y la compra
+            updateCartSummary();
+            updatePurchaseSummary();
+        }
+    }
 });
+
 
 // Función para mostrar el mensaje tipo alert
 function showAlert(message, type) {

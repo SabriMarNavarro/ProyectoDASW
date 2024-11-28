@@ -13,7 +13,7 @@ router.post('/crear-sesion-pago', async (req, res) => {
             payment_method_types: ['card'],
             line_items: [{
                 price_data: {
-                    currency: 'usd',
+                    currency: 'mxn',
                     product_data: { name: 'Total de compra' }, // Solo un producto genérico
                     unit_amount: parseInt(total)*100, // Stripe usa centavos
                 },
