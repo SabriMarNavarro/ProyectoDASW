@@ -21,7 +21,7 @@ function productToHtml(product) {
                                         <img src="${product._imageUrl}" alt="${product._type}" 
                                             class="w-100 p-3" 
                                             style="border-top-left-radius: 30px; border-top-right-radius: 30px; object-fit:cover; height: 250px;">
-                                        <button class="heart-icon position-absolute top-0 end-0 p-2" aria-label="Add to favorites" style="background: none; border: none; cursor: pointer;">
+                                        <button class="heart-icon onclick="favoritosadd()" position-absolute top-0 end-0 p-2" aria-label="Add to favorites" style="background: none; border: none; cursor: pointer;">
                                             <i class="fa fa-heart" aria-hidden="true" style="font-size: 1.5rem;"></i>
                                         </button>
                                     </div>
