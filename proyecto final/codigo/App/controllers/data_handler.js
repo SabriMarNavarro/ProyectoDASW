@@ -1,4 +1,4 @@
-const { Productos, Mascotas, Favoritos } = require('../data/db'); // Importamos los modelos
+const { Productos, Mascotas, Favoritos, Users } = require('../data/db'); // Importamos los modelos
 
 class DataHandlerException {
     constructor(errorMessage) {
@@ -123,17 +123,23 @@ module.exports = {
     DataHandlerException,
     getProducts: () => getAll(Productos),
     getMascotas: () => getAll(Mascotas),
+    getUsers: () => getAll(Users),
     getFavoritosByUserId,
     getProductById: (uuid) => getById(Productos, uuid),
     getMascotaById: (uuid) => getById(Mascotas, uuid),
+    getUserById: (uuid) => getById(Users, uuid),
     createProduct: (values) => create(Productos, values),
     createMascota: (values) => create(Mascotas, values),
+    createUser: (values) => create(Users, values),
     updateProduct: (uuid, values) => update(Productos, uuid, values),
     updateMascota: (uuid, values) => update(Mascotas, uuid, values),
+    updateUser: (uuid, values) => update(Users, uuid, values),
     deleteProduct: (uuid) => remove(Productos, uuid),
     deleteMascota: (uuid) => remove(Mascotas, uuid),
+    deleteUser: (uuid) => remove(Users, uuid),
     findProduct: (query) => find(Productos, query, ['_title', '_category']),
     findMascota: (query) => find(Mascotas, query, ['_Nombre', '_description', '_Status']),
+    findUser: (query) => find(Users, query, ['_email', '_password', '_rol']),
     addFavorito,
     removeFavorito
 };

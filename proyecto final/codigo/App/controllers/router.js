@@ -4,9 +4,11 @@ const path = require('path');
 const productRouter = require('../routes/products');
 const mascotasRouter = require('../routes/mascotas');
 const favoritosRouter = require('../routes/favoritos');
+const usersRouter = require('../routes/users');
 
 const adminProductRouter = require('../routes/admin_products'); 
 const adminMascotasRouter = require('../routes/admin_mascotas'); 
+const adminUsersRouter = require('../routes/admin_users'); 
 
 const router = express.Router();
 
@@ -23,12 +25,15 @@ function validateAdmin(req, res, next) {
 // Usa el router para las rutas de productos
 router.use('/products', productRouter);
 router.use('/mascotas', mascotasRouter);
+router.use('/users', usersRouter);
 
 
 // Rutas administradas por el middleware de validación
 router.use('/admin/products', validateAdmin, adminProductRouter);
 
 router.use('/admin/mascotas', validateAdmin, adminMascotasRouter);
+
+router.use('/admin/users', validateAdmin, adminUsersRouter);
 
 
 

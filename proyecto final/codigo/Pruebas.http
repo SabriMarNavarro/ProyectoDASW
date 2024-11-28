@@ -248,3 +248,47 @@ Content-Type: application/json
     { "_uuid": 33, "_amount": 1 },
     { "_uuid": 44, "_amount": 4 }
 ]
+
+
+
+
+###
+
+GET http://localhost:3000/products
+
+###
+
+GET http://localhost:3000/users
+
+
+### USUARIOS
+
+POST http://localhost:3000/admin/users HTTP/1.1
+Content-Type: application/json
+x-auth: {validacion}
+
+{
+    "_uuid": 1,
+    "_email": "samnnavarro@gmail.com",
+    "_password": "123456789",
+    "_rol": "ADMIN"
+}
+
+
+### USUARIOS
+
+POST http://localhost:3000/admin/users HTTP/1.1
+Content-Type: application/json
+x-auth: {validacion}
+
+{
+    "_uuid": 2,
+    "_email": "danielplaton@gmail.com",
+    "_password": "123456789",
+    "_rol": "CLIENTE"
+}
+
+###
+
+DELETE http://localhost:3000/admin/users/2 HTTP/1.1
+x-auth: {validacion}

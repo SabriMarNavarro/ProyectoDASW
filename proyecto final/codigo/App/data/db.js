@@ -110,19 +110,21 @@ let FavoritosSchema = mongoose.Schema ({
 });
 
 let UserSchema = mongoose.Schema ({
+    _uuid: {
+        type: String,
+        required: true
+    },
     _email: {
         type: String,
         required: true
     },
     _password: {
-        _type: {
             type: String,
             required: true
-        },
+    },
     _rol: {
-            type: String,
-            required: true
-        }
+        type: String,
+        required: true
     }
 });
 
@@ -135,5 +137,7 @@ let Mascotas = mongoose.model('mascotas', MascotasSchema);
 
 let Favoritos = mongoose.model('favoritos', FavoritosSchema);
 
+let Users = mongoose.model('usuarios', UserSchema);
+
 // Exportamos los modelos y la conexión
-module.exports = { Productos, Mascotas, Favoritos, mongoose };
+module.exports = { Productos, Mascotas, Favoritos, mongoose, Users };
