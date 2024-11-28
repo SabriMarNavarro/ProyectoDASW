@@ -398,9 +398,15 @@
                    
                     <!-- Columna de las cards -->
                    <div class="col-lg-9 col-md-9 col-sm-8 mb-4">
-                        <div id="applied filters" class="mb-3" style=" color: rgba(54, 41, 41, 0.699);">
-                            Filtros aplicados : ninguno
-                        </div>    
+                        <div id="applied filters" class="mb-3 onlyWhenAdmin" style="color: rgba(54, 41, 41, 0.699);">
+                            <!-- Botón con el símbolo de más -->
+                            <li class="nav-item" style="display: flex; justify-content: flex-end; margin-right: 3rem;">
+                                <button class="btn" data-bs-toggle="modal" data-bs-target="#addProductModal">
+                                    Anadir productos       <i class="fas fa-user-plus" aria-hidden="true"></i>
+                                </button>
+                            </li>
+                        </div>
+                    
                         <div class="row justify-content-center" style="margin-top: -55px;" id="Cards_products">  
 
                             
@@ -409,6 +415,74 @@
                         </div>
                     </div>
                </div>
+
+                
+                <!-- Modal para añadir producto -->
+                <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="addProductModalLabel">Añadir Producto</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                        </div>
+                        <div class="modal-body">
+                        <form id="addProductForm">
+                            <div class="mb-3">
+                            <label for="productName" class="form-label">Nombre del Producto</label>
+                            <input type="text" class="form-control" id="productName" placeholder="Nombre del producto" required>
+                            </div>
+                            <div class="mb-3">
+                            <label for="uuid" class="form-label">UUID</label>
+                            <input type="text" class="form-control" id="uuid" placeholder="UUID del producto" required>
+                            </div>
+                            <div class="mb-3">
+                            <label for="unitType" class="form-label">Unidad</label>
+                            <select class="form-select" id="unitType" required>
+                                <option value="">Selecciona la unidad</option>
+                                <option value="fisica">Física</option>
+                                <option value="digital">Digital</option>
+                            </select>
+                            </div>
+                            <div class="mb-3">
+                            <label for="price" class="form-label">Precio por Unidad</label>
+                            <input type="number" class="form-control" id="price" placeholder="Precio por unidad" required>
+                            </div>
+                            <div class="mb-3">
+                            <label for="description" class="form-label">Descripción</label>
+                            <textarea class="form-control" id="description" rows="3" placeholder="Descripción del producto" required></textarea>
+                            </div>
+                            <div class="mb-3">
+                            <label for="stock" class="form-label">Stock</label>
+                            <input type="number" class="form-control" id="stock" placeholder="Cantidad en stock" required>
+                            </div>
+                            <div class="mb-3">
+                            <label for="imageUrl" class="form-label">URL de la Foto</label>
+                            <input type="url" class="form-control" id="imageUrl" placeholder="URL de la foto del producto" required>
+                            </div>
+                            <div class="mb-3">
+                            <label for="category" class="form-label">Categoría</label>
+                            <select class="form-select" id="category" required>
+                                <option value="">Selecciona una categoría</option>
+                                <option value="Accesorios">Accesorios</option>
+                                <option value="Alimentos">Alimento</option>
+                                <option value="Jabones">Jabones y Acondicionadores</option>
+                                <!-- Agrega más opciones aquí según lo necesites -->
+                            </select>
+                            </div>
+                        </form>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="submit" form="addProductForm" class="btn btn-primary" onclick="addProductToDataBase()">Añadir Producto</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                
+                <!-- Bootstrap JS (opcional si ya lo tienes importado) -->
+                <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+  
 
 
                <!-- Paginador -->

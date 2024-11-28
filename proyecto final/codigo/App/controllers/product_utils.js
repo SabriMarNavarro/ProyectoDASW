@@ -260,6 +260,12 @@ async function addProductToCart() {
     }
 }
 
+
+function addProductToDataBase() {
+    alert('subiendo...')
+}
+
+
 // // Función de redireccionamiento al carrito
 // Redireccionamiento.addEventListener('click', () => {
 //     window.location.href = 'shopping_cart.html'; // Redirige al carrito
