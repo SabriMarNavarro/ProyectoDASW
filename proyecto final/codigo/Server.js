@@ -19,7 +19,7 @@ app.use(express.json());
 app.use('/', router); // Usa el router que ya tiene las rutas definidas
 
 // Middleware para servir archivos estáticos
-app.use(express.static('app'));
+app.use(express.static('App'));
 app.use('/Views', express.static('Views'));
 
 
