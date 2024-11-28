@@ -68,6 +68,68 @@ function setupHeartIcons() {
     });
 }
 
+
+// Añade un eventListener a todos los checkboxes dinámicamente
+document.querySelectorAll('.form-check-input').forEach(checkbox => {
+    checkbox.addEventListener('change', applyFilters);
+});
+
+function applyFilters() {
+    // Selecciona todos los checkboxes y obtiene los filtros activos
+    const filters = Array.from(document.querySelectorAll('.form-check-input')).reduce((acc, checkbox) => {
+        acc[checkbox.id] = checkbox.checked;
+        return acc;
+    }, {});
+
+    // Verificar si al menos un filtro está seleccionado
+    const anyFilterSelected = Object.values(filters).some(isChecked => isChecked);
+
+    // Si no hay filtros seleccionados, cargar todos los productos
+    if (!anyFilterSelected) {
+        productListToHtml(products); // Muestra todos los productos
+        return;
+    }
+
+    // Filtrar los productos basados en los filtros activos
+    const filteredProducts = products.filter(product => {
+        const matchesMascotas =
+            (filters.filterDog && product._description === 'perros') ||
+            (filters.filterCat && product._description === 'gatos') ||
+            (filters.filterBird && product._description === 'ave') ||
+            (filters.filterFish && product._description === 'pez');
+
+        const matchesCategory =
+            (filters.filterAccesorios && product._category === 'accesorios') ||
+            (filters.filterFood && product._category === 'alimentos') ||
+            (filters.filterShampoo && product._category === 'Jabones y acondicionadores');
+
+        const matchesPrice =
+            (filters.filter0Cost && product._pricePerUnit >= 0 && product._pricePerUnit <= 99) ||
+            (filters.filter100Cost && product._pricePerUnit >= 100 && product._pricePerUnit <= 299) ||
+            (filters.filter300Cost && product._pricePerUnit >= 300 && product._pricePerUnit <= 599) ||
+            (filters.filter600Cost && product._pricePerUnit >= 600 && product._pricePerUnit <= 999) ||
+            (filters.filter1000Cost && product._pricePerUnit > 1000);
+
+        const matchesAvailability =
+            (filters.filterPhisicStore && product._unit.includes('fisica')) ||
+            (filters.filterOnLine && product._unit.includes('linea'));
+
+        // El producto cumple al menos un filtro de cada categoría activa
+        return (!filters.filterDog && !filters.filterCat && !filters.filterBird && !filters.filterFish || matchesMascotas) &&
+               (!filters.filterAccesorios && !filters.filterFood && !filters.filterShampoo || matchesCategory) &&
+               (!filters.filter0Cost && !filters.filter100Cost && !filters.filter300Cost && !filters.filter600Cost && !filters.filter1000Cost || matchesPrice) &&
+               (!filters.filterPhisicStore && !filters.filterOnLine || matchesAvailability);
+    });
+
+    // Mostrar resultados o mensaje si no hay coincidencias
+    if (filteredProducts.length === 0) {
+        productContainer.innerHTML = 
+            '<p style="margin-top: 20%; text-align: center; font-size: 18px; color: #333;">No hay productos con esas características</p>';
+    } else {
+        productListToHtml(filteredProducts);
+    }
+}
+
 // Función para cargar los productos desde el servidor
 async function loadProductsPage(page) {
     const response = await fetch(`${productsUrl}?page=${page}`);

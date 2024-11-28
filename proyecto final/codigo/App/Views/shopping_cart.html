@@ -19,6 +19,9 @@
 
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/css2?family=Vollkorn:wght@400;700&display=swap" rel="stylesheet">
+        <!-- Agregar la librería Stripe -->
+        <script src="https://js.stripe.com/v3/"></script>
+
 
         <style>
             body {
@@ -327,6 +330,7 @@
                         <button
                             type="button"
                             class="btn w-100 mt-4"
+                            id="pagar"
                             style="box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3); ; background-color: #e8ac3c8a; color: rgb(255, 255, 255); font-family: Poppins ; font-size: 20px; font-weight: 500; border-bottom: 2px solid #00000042;"
                         >
                             Pagar
@@ -398,6 +402,7 @@
         <script src="/proyecto final/codigo/App/controllers/shopping_cart.js"> </script>
         <script src="/proyecto final/codigo/App/controllers/utils.js"> </script>
         <script src="/proyecto final/codigo/App/controllers/cart_utils.js"> </script>
+        <script src="/proyecto final/codigo/App/controllers/pago_utils.js"></script>
     
     </body>
 </html>

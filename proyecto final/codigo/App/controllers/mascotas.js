@@ -8,13 +8,14 @@ class ProductException {
 
 // Clase productos 
 class Mascotas {
-    constructor(title, description, imageUrl, estatus, edad, type){
+    constructor(title, description, imageUrl, especie, edad, tamano, type){
         this._uuid = generateUUID();
         this._title = title;
         this._description = description;
         this._imageUrl = imageUrl;
-        this._estatus = estatus;
+        this._especie = especie;
         this._edad = edad;
+        this._tamano = tamano;
         this._type = type;
     }
 
@@ -36,12 +37,16 @@ class Mascotas {
         return this._imageUrl;
     }
 
-    get estatus(){
-        return this._estatus;
+    get especie(){
+        return this._especie;
     }
 
     get edad(){
         return this._edad;
+    }
+
+    get tamano(){
+        return this._tamano;
     }
 
     get type(){
@@ -76,18 +81,25 @@ class Mascotas {
         this._imageUrl= value;
     }
 
-    set estatus(value){
-        if(!estatus){
-            throw new ProductException("El estatus de la mascota esta");
+    set especie(value){
+        if(!especie){
+            throw new ProductException("El estatus de la mascota esta vacio");
         }
-        this._estatus= value;
+        this._especie= value;
     }
 
     set edad(value){
         if(!estatus){
-            throw new ProductException("la edad de la mascota esta");
+            throw new ProductException("la edad de la mascota esta vacio");
         }
         this._edad= value;
+    }
+
+    set tamano(value){
+        if(!tamano){
+            throw new ProductException("la edad de la mascota esta vacio");
+        }
+        this._tamano= tamano;
     }
 
 
@@ -108,7 +120,7 @@ class Mascotas {
 
     static cleanObject(obj) {
         // Lista de atributos que pertenecen a la clase Product
-        let atributos = ["uuid","title", "description", "imageUrl", "estatus", "edad", "type"];
+        let atributos = ["uuid","title", "description", "imageUrl", "especie", "edad", "tamano", "type"];
         
         // Objeto limpio que contendrá solo las propiedades válidas
         let objeto_limpio = {};
@@ -138,8 +150,9 @@ class Mascotas {
             Objeto_limpio.title,
             Objeto_limpio.description,
             Objeto_limpio.imageUrl,
-            Objeto_limpio.estatus,
+            Objeto_limpio.especie,
             Objeto_limpio.edad,
+            Objeto_limpio.tamano,
             Objeto_limpio.type
         );
 
@@ -158,8 +171,9 @@ class Mascotas {
             Objeto_limpio2.title,
             Objeto_limpio2.description,
             Objeto_limpio2.imageUrl,
-            Objeto_limpio2.estatus,
+            Objeto_limpio2.especie,
             Objeto_limpio2.edad,
+            Objeto_limpio.tamano,
             Objeto_limpio2.type
         );
 

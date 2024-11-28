@@ -54,6 +54,68 @@ function setupHeartIcons() {
     });
 }
 
+// Añade eventListeners dinámicamente a los filtros
+const filters = [
+    'filterDog', 'filterCat', 'filterBird', 'filterFish',
+    'filterSmall', 'filterMed', 'filterBig',
+    'filterLessThanYear', 'filter1To3Years', 'filter3To5Years', 'filterMoreAge'
+];
+
+filters.forEach(filterId => {
+    document.getElementById(filterId).addEventListener('change', applyFilters);
+});
+
+function applyFilters() {
+    // Obtener los valores de los filtros seleccionados
+    const filterStates = filters.reduce((acc, filterId) => {
+        acc[filterId] = document.getElementById(filterId).checked;
+        return acc;
+    }, {});
+
+    // Verificar si al menos un filtro está seleccionado
+    const anyFilterSelected = Object.values(filterStates).some(isChecked => isChecked);
+
+    // Si no hay filtros seleccionados, cargar todos los productos
+    if (!anyFilterSelected) {
+        productListToHtml(products); // Muestra todos los productos
+        return; // Salir de la función si no hay filtros
+    }
+
+    // Filtrar los productos con base en los filtros seleccionados
+    const filteredProducts = products.filter(product => {
+        const matchesMascotas = 
+            (filterStates.filterDog && product._especie === 'perro') ||
+            (filterStates.filterCat && product._especie === 'gato') ||
+            (filterStates.filterBird && product._especie === 'ave') ||
+            (filterStates.filterFish && product._especie === 'pez');
+
+        const matchesSize = 
+            (filterStates.filterSmall && product._tamano === 'pequeno') ||
+            (filterStates.filterMed && product._tamano === 'mediano') ||
+            (filterStates.filterBig && product._tamano === 'grande');
+    
+        const matchesAge = 
+            (filterStates.filterLessThanYear && product._edad < 1) ||
+            (filterStates.filter1To3Years && (product._edad >= 1 && product._edad <= 3)) ||
+            (filterStates.filter3To5Years && (product._edad >= 3 && product._edad <= 5)) ||
+            (filterStates.filterMoreAge && product._edad > 5);
+    
+        // El producto pasa si cumple al menos un filtro activo de cada categoría
+        return (!filterStates.filterDog && !filterStates.filterCat && !filterStates.filterBird && !filterStates.filterFish || matchesMascotas) &&
+               (!filterStates.filterSmall && !filterStates.filterMed && !filterStates.filterBig || matchesSize) &&
+               (!filterStates.filterLessThanYear && !filterStates.filter1To3Years && !filterStates.filter3To5Years && !filterStates.filterMoreAge || matchesAge);
+    });
+    if (filteredProducts.length === 0) {
+        // Si no hay productos que coincidan, mostrar mensaje
+        productContainer.innerHTML = '<p style="margin-top: 20%; text-align: center; font-size: 18px; color: #333;">No hay mascotas con esas características</p>';
+    } else {
+        // Mostrar los productos filtrados
+        productListToHtml(filteredProducts);
+    }
+}
+
+
+
 async function preloadModal(uuid) {
     currentProd = products.find(prod => prod._uuid == uuid);
     document.getElementById('productIdAddModal').value = uuid;
