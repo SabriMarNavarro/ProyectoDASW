@@ -88,14 +88,16 @@ async function login() {
 
     if (existingUser && validPassword) {
         if(existingUser._rol === "ADMIN") {
-            localStorage.setItem('user._uuid', 'ADMIN');
+            localStorage.setItem('rol', existingUser._rol);
+            localStorage.setItem('email', existingUser._email);
         } else {
-            localStorage.setItem('user._uuid', 'CLIENTE');
+            localStorage.setItem('rol', existingUser._rol);
+            localStorage.setItem('email', existingUser._email);
         }
     } else {
         showAlert("Usuario o contraseña incorrectos!", "danger");
     }
-    //alert( localStorage.getItem('user._uuid') );
+    //alert( localStorage.getItem('rol') );
 }
 
 
