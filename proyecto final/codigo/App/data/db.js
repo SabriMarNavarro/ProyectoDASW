@@ -77,12 +77,16 @@ let MascotasSchema = mongoose.Schema ({
         type: String,
         required: true
     },
-    _status:{
+    _especie:{
         type: String,
         required: true
     },
     _edad:{
         type: Number,
+        required: true
+    },
+    _tamano:{
+        type: String,
         required: true
     },
     _type: {

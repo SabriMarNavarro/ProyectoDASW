@@ -14,7 +14,7 @@ const {
 router.post('/', async (req, res) => {
     let product = req.body;
 
-    const requiredAttributes = ['_uuid', '_title', '_description','_imageUrl','_status','_edad','_type']; 
+    const requiredAttributes = ['_uuid', '_title', '_description','_imageUrl','_especie','_edad','tamano','_type']; 
     const missingAttributes = requiredAttributes.filter(attr => !product[attr]);
 
     if (missingAttributes.length > 0) {

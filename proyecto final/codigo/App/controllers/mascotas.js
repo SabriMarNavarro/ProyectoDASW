@@ -83,13 +83,13 @@ class Mascotas {
 
     set especie(value){
         if(!especie){
-            throw new ProductException("El estatus de la mascota esta vacio");
+            throw new ProductException("La especie de la mascota esta vacio");
         }
         this._especie= value;
     }
 
     set edad(value){
-        if(!estatus){
+        if(!edad){
             throw new ProductException("la edad de la mascota esta vacio");
         }
         this._edad= value;
@@ -99,7 +99,7 @@ class Mascotas {
         if(!tamano){
             throw new ProductException("la edad de la mascota esta vacio");
         }
-        this._tamano= tamano;
+        this._tamano= value;
     }
 
 
@@ -173,7 +173,7 @@ class Mascotas {
             Objeto_limpio2.imageUrl,
             Objeto_limpio2.especie,
             Objeto_limpio2.edad,
-            Objeto_limpio.tamano,
+            Objeto_limpio2.tamano,
             Objeto_limpio2.type
         );
 
