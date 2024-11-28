@@ -125,6 +125,10 @@ let UserSchema = mongoose.Schema ({
     _rol: {
         type: String,
         required: true
+    },
+    _favoritos: {
+        type: Array,
+        required: false
     }
 });
 
