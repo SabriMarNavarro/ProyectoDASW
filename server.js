@@ -1,17 +1,13 @@
-// Importar módulos:
+// Importar módulos
 const express = require('express');
 const path = require('path');
-const router = require(path.join(__dirname, 'App', 'controllers', 'router'));
 const cors = require('cors');
 
+// Crear una instancia de Express
 const app = express();
 
-// Levantar el servidor en el puerto 3000
+// Definir el puerto; usar el puerto proporcionado por el entorno o el 3000 por defecto
 const port = process.env.PORT || 3000;
-
-app.listen(port, () => {
-    console.log(`Aplicación de ejemplo corriendo en el puerto ${port}`);
-});
 
 // Middleware para habilitar CORS
 app.use(cors());
@@ -19,15 +15,17 @@ app.use(cors());
 // Middleware para parsear JSON
 app.use(express.json());
 
-// Middleware para usar el router principal
-app.use('/', router); // Usa el router que ya tiene las rutas definidas
+// Importar el router principal
+const router = require(path.join(__dirname, 'App', 'controllers', 'router'));
+
+// Usar el router principal para todas las rutas
+app.use('/', router);
 
 // Middleware para servir archivos estáticos
-app.use(express.static('App'));
-app.use('/Views', express.static('Views'));
+app.use(express.static(path.join(__dirname, 'App')));
+app.use('/Views', express.static(path.join(__dirname, 'Views')));
 
-
-// imprime el mensaje cuando se corre el servidor
+// Iniciar el servidor y escuchar en el puerto especificado
 app.listen(port, () => {
-    console.log("Aplicación de ejemplo corriendo en el puerto " + port);
+    console.log(`Aplicación de ejemplo corriendo en el puerto ${port}`);
 });
