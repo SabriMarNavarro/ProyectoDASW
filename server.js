@@ -16,13 +16,13 @@ app.use(cors());
 app.use(express.json());
 
 // Importar el router principal
-const router = require(path.join(__dirname, 'app', 'controllers', 'router'));
+const router = require(path.join(__dirname, 'App', 'controllers', 'router'));
 
 // Usar el router principal para todas las rutas
 app.use('/', router);
 
 // Middleware para servir archivos estáticos
-app.use(express.static(path.join(__dirname, 'app')));
+app.use(express.static(path.join(__dirname, 'App')));
 app.use('/Views', express.static(path.join(__dirname, 'Views')));
 
 // Iniciar el servidor y escuchar en el puerto especificado
