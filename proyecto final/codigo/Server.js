@@ -16,7 +16,7 @@ app.use(cors());
 app.use(express.json());
 
 // Importar el router principal
-const router = require(path.join(__dirname, 'App', 'controllers', 'router'));
+const router = require(path.join(__dirname, 'router'));
 
 // Usar el router principal para todas las rutas
 app.use('/', router);
