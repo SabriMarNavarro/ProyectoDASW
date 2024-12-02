@@ -7,7 +7,11 @@ const cors = require('cors');
 const app = express();
 
 // Levantar el servidor en el puerto 3000
-const port = 3000;
+const port = process.env.PORT || 3000;
+
+app.listen(port, () => {
+    console.log(`Aplicación de ejemplo corriendo en el puerto ${port}`);
+});
 
 // Middleware para habilitar CORS
 app.use(cors());
