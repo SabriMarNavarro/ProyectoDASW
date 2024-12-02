@@ -29,5 +29,5 @@ app.use('/Views', express.static('Views'));
 
 // imprime el mensaje cuando se corre el servidor
 app.listen(port, () => {
-    console.log("Aplicación de ejemplo corriendo en el puerto " + port);
+  console.log(`Aplicación de ejemplo corriendo en el puerto ${port}`);
 });
